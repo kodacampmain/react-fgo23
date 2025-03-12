@@ -7,6 +7,7 @@ function Home(props) {
   const [words, setWords] = useState("Kata-Kata Hari Ini");
   const [ismarried, setIsmarried] = useState(isMarried);
   const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   // console.log(name);
   // console.log(umur);
   // console.log(gender);
@@ -40,6 +41,7 @@ function Home(props) {
   // jika deps ada elemennya, maka seperti did update
   useEffect(() => {
     setTimeout(() => {
+      // setIsLoading(true);
       fetch("https://jsonplaceholder.typicode.com/users")
         .then((response) => {
           if (!response.ok) throw new Error(response.statusText);
@@ -50,9 +52,32 @@ function Home(props) {
         })
         .catch((err) => {
           if (err instanceof Error) console.error(err.message);
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
     }, 1000);
   }, []);
+  function showLoadingElement() {
+    switch (isLoading) {
+      case true:
+        return <p>Loading...</p>;
+      case false:
+        return null;
+      default:
+        return null;
+    }
+  }
+  function showLists(showListElement) {
+    if (isLoading) return null;
+    return <ol>{showListElement()}</ol>;
+  }
+  function showUsers() {
+    if (users.length === 0) return null;
+    return users.map((user) => {
+      return <li key={user.id}>{user.name}</li>;
+    });
+  }
   return (
     <>
       <Komponen />
@@ -95,15 +120,8 @@ function Home(props) {
         <h3>{words}</h3>
       </section>
       <section>
-        <ol>
-          {users.length === 0 ? (
-            <p>Loading...</p>
-          ) : (
-            users.map((user) => {
-              return <li key={user.id}>{user.name}</li>;
-            })
-          )}
-        </ol>
+        {showLoadingElement()}
+        {showLists(showUsers)}
       </section>
     </>
   );
