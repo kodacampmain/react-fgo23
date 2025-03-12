@@ -15,7 +15,7 @@ import "./styles/tailwind.css";
 //   hobbies: ["Tidur", "Koding", "Nonton"],
 // };
 
-createRoot(document.body).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/* <App /> */}
     {/* <HomeClass /> */}
