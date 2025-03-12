@@ -1,14 +1,14 @@
-* {
+/* * {
   box-sizing: border-box;
   margin: 0;
-}
+} */
 
-body {
+/* body {
   font-family: "Iansui", cursive;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
+} */
 
 /* header {
   display: flex;
@@ -87,14 +87,14 @@ body {
     grid-row: 3 / 4;
   } */
 
-.modal-wrapper {
+/* .modal-wrapper {
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 2;
-}
+} */
 
-.modal {
+/* .modal {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -104,40 +104,40 @@ body {
   background-color: blanchedalmond;
   border-radius: 5%;
   padding: 10px;
-}
+} */
 
-.modal form {
+/* .modal form {
   display: flex;
   flex-direction: column;
   height: 100%;
   gap: 0.5rem;
-}
+} */
 
-.modal form h2 {
+/* .modal form h2 {
   text-align: center;
-}
+} */
 
-.modal form input,
+/* .modal form input,
 .modal form textarea {
   padding: 5px;
   font-family: "Iansui", cursive;
-}
+} */
 
-.modal form textarea {
+/* .modal form textarea {
   resize: none;
   flex: 1;
-}
+} */
 
-.modal form button {
+/* .modal form button {
   border-radius: 5px;
   padding: 5px;
-}
+} */
 
-.modal .close {
+/* .modal .close {
   position: absolute;
   top: 5px;
   right: 10px;
   background: none;
   border: none;
   font-size: 2rem;
-}
+} */

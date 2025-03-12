@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import AddTodo from "../components/AddTodo.jsx";
 import TodoList from "../components/TodoList.jsx";
 import "../styles/todolist.css";
 
 function Todo() {
+  useEffect(() => {
+    document.title = "Todo List"
+  }, [])
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [todos, setTodos] = useState(() => {
     const todos = JSON.parse(localStorage.getItem("fgo23:todos") || "[]");
