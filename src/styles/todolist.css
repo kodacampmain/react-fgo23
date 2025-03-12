@@ -10,31 +10,31 @@ body {
   flex-direction: column;
 }
 
-header {
+/* header {
   display: flex;
   justify-content: space-between;
   padding: 10px 100px;
   background: lightblue;
-}
+} */
 
-button {
+/* button {
   cursor: pointer;
   user-select: none;
-}
+} */
 
-header button {
+/* header button {
   display: flex;
   padding: 0;
-}
+} */
 
-header button p {
+/* header button p {
   height: 100%;
   padding: 10px;
-}
+} */
 
-header button p:first-child {
+/* header button p:first-child {
   border-right: 1px solid black;
-}
+} */
 
 .todolist {
   background-color: blanchedalmond;

@@ -15,16 +15,17 @@ function Todo() {
   }
   return (
     <>
-      <header>
-        <h1>TODO LIST</h1>
+      <header className="flex justify-between py-[10px] px-[100px] bg-[lightblue]">
+        <h1 className="text-2xl">TODO LIST</h1>
         <button
+          className="flex p-0 border-solid border-black border-2 md:border-white"
           type="button"
           onClick={() => {
             setIsModalOpen(true);
           }}
         >
-          <p>+</p>
-          <p>ADD</p>
+          <p className="h-full p-2.5 border-r border-r-black border-solid">+</p>
+          <p className="h-full p-2.5">ADD</p>
         </button>
       </header>
       <TodoList todos={todos} />

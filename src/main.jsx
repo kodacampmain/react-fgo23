@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 // import HomeClass from "./pages/Class.jsx";
 // import HomeFunc from "./pages/Function.jsx";
 import Todo from "./pages/Todo";
+import "./styles/tailwind.css";
 
 // const person = {
 //   name: "Iman",
