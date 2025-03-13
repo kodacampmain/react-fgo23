@@ -6,6 +6,9 @@
 
   --spacing-1\.25: 5px;
 
+  --grid-template-column: repeat(5, minmax(100px, 1fr));
+  --grid-auto-rows: 200px;
+
   --font-iansui: "Iansui", cursive;
 
   --animate-logo-spin: logo-spin infinite 20s linear;
