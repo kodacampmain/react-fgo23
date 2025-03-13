@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { EventEmitter } from "node:events";
+import { Link } from "react-router";
+// import { EventEmitter } from "node:events";
 
 function Home(props) {
   const { name, umur, gender, isMarried, hobbies, komponen: Komponen } = props;
-  const acara = new EventEmitter();
+  // const acara = new EventEmitter();
   const [words, setWords] = useState("Kata-Kata Hari Ini");
   const [ismarried, setIsmarried] = useState(isMarried);
   const [users, setUsers] = useState([]);
@@ -23,15 +24,15 @@ function Home(props) {
       return e.target.words.value;
     });
   }
-  useEffect(() => {
-    function eventHandler() {
-      console.log("Status Berubah");
-    }
-    acara.on("toggled", eventHandler);
-    return () => {
-      acara.off("toggled", eventHandler);
-    };
-  }, []);
+  // useEffect(() => {
+  //   function eventHandler() {
+  //     console.log("Status Berubah");
+  //   }
+  //   acara.on("toggled", eventHandler);
+  //   return () => {
+  //     acara.off("toggled", eventHandler);
+  //   };
+  // }, []);
   useEffect(() => {
     console.log("effect");
     // effect/logika yang akan dijalankan
@@ -57,6 +58,9 @@ function Home(props) {
           setIsLoading(false);
         });
     }, 1000);
+  }, []);
+  useEffect(() => {
+    document.title = "Home";
   }, []);
   function showLoadingElement() {
     switch (isLoading) {
@@ -91,7 +95,7 @@ function Home(props) {
         <button
           type="button"
           onClick={() => {
-            acara.emit("toggled");
+            // acara.emit("toggled");
             if (ismarried) return setIsmarried(false);
             return setIsmarried(true);
           }}
@@ -105,15 +109,10 @@ function Home(props) {
           })}
         </ul>
       </section>
-      <section
-        style={{
-          backgroundColor: "lightgrey",
-          padding: "10px 20px",
-        }}
-      >
+      <section className="bg-gray-300 py-2.5 px-5 flex flex-col items-center">
         <form onSubmit={submitHandler}>
-          <input type="text" name="words" placeholder="Kata-kata hari ini" style={{ padding: "2px" }} />
-          <button type="submit" style={{ cursor: "pointer" }}>
+          <input type="text" name="words" placeholder="Kata-kata hari ini" className="p-0.5 border-2 border-black" />
+          <button type="submit" className="p-0.5 ml-1">
             Change
           </button>
         </form>
@@ -122,6 +121,11 @@ function Home(props) {
       <section>
         {showLoadingElement()}
         {showLists(showUsers)}
+      </section>
+      <section className="py-1 flex justify-center items-center">
+        <Link to="/todo">
+          <button type="button">Todo</button>
+        </Link>
       </section>
     </>
   );

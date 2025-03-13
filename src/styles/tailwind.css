@@ -7,14 +7,27 @@
   --spacing-1\.25: 5px;
 
   --font-iansui: "Iansui", cursive;
+
+  --animate-logo-spin: logo-spin infinite 20s linear;
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }
 
 @layer base {
   button {
-    @apply cursor-pointer select-none border-2  border-black;
+    @apply cursor-pointer select-none border-2 border-black;
   }
-  body {
+  #root {
     @apply font-iansui min-h-screen flex flex-col;
+  }
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cff);
   }
 }
 

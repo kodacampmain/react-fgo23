@@ -54,6 +54,7 @@
   flex-direction: column;
   transition: all 0.3s;
   cursor: pointer;
+  height: 100%;
 }
 
 .card:hover {
