@@ -1,4 +1,18 @@
-function Header() {
+import { Link, useNavigate } from "react-router";
+// import { useState } from "react";
+
+function Header({user, setUser}) {
+  const navigate = useNavigate();
+  // const [user, setUser] = useLocalStorage("fgo23:user", {});
+
+  function logout() {
+    setUser({
+      email: "",
+      password: "",
+    });
+    // setIsLogin(false);
+    navigate("/auth");
+  }
   return (
     <header className="py-2.5 px-25 flex justify-between sticky top-0 bg-gray-200">
       <div className="h-18 w-18">
@@ -12,15 +26,32 @@ function Header() {
         </ul>
       </nav>
       <div className="flex gap-1.25 items-center">
-        <button type="button" className="border-2 border-blue-400 bg-white text-blue-400 p-2 h-fit active:bg-blue-400 active:text-white">
-          Signin
-        </button>
-        <button
-          type="button"
-          className="border-2 border-blue-400 bg-blue-400 text-white p-2 h-fit active:bg-white active:text-blue-400"
-        >
-          Signup
-        </button>
+        {user.email && user.password ? (
+          <button
+            onClick={logout}
+            type="button"
+            className="border-2 border-blue-400 bg-white text-blue-400 p-2 h-fit active:bg-blue-400 active:text-white"
+          >
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link to="/auth">
+              <button
+                type="button"
+                className="border-2 border-blue-400 bg-white text-blue-400 p-2 h-fit active:bg-blue-400 active:text-white"
+              >
+                Signin
+              </button>
+            </Link>
+            <button
+              type="button"
+              className="border-2 border-blue-400 bg-blue-400 text-white p-2 h-fit active:bg-white active:text-blue-400"
+            >
+              Signup
+            </button>
+          </>
+        )}
       </div>
     </header>
   );

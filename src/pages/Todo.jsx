@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 
+import useLocalStorage from "../hooks/useLocalStorage.js";
+
 import AddTodo from "../components/AddTodo.jsx";
 import TodoList from "../components/TodoList.jsx";
 import "../styles/todolist.css";
 
 function Todo() {
   useEffect(() => {
-    document.title = "Todo List"
-  }, [])
+    document.title = "Todo List";
+  }, []);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [todos, setTodos] = useState(() => {
-    const todos = JSON.parse(localStorage.getItem("fgo23:todos") || "[]");
-    return todos;
-  });
+  // const [todos, setTodos] = useState(() => {
+  //   // const todos = JSON.parse(localStorage.getItem("fgo23:todos") || "[]");
+  //   const todos = JSON.parse(localStorage["fgo23:todos"]);
+  //   return todos;
+  // });
+  const [todos, setTodos] = useLocalStorage("fgo23:todos", []);
   function closeModal() {
     setIsModalOpen(false);
   }
