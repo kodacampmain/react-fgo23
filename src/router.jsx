@@ -5,6 +5,7 @@ import Header from "./components/Header.jsx";
 import Todo from "./pages/Todo";
 import TodoDetail from "./pages/TodoDetail.jsx";
 import Login from "./pages/Login.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 const person = {
   name: "Iman",
@@ -47,7 +48,14 @@ function Router() {
         />
         <Route path="todo">
           <Route index element={<Todo />} />
-          <Route path=":id" element={<TodoDetail />} />
+          <Route
+            path=":id"
+            element={
+              <PrivateRoute redirectTo="/auth">
+                <TodoDetail />
+              </PrivateRoute>
+            }
+          />
         </Route>
         <Route path="auth">
           <Route index element={<Login />}></Route>

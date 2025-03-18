@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { useEffect, useContext } from "react";
 
 import InputWithLabel from "../components/InputWithLabel";
@@ -9,6 +9,8 @@ function Login() {
   const { user, setUser } = useContext(userContext);
   // console.log(userCtx);
   const navigate = useNavigate();
+  const location = useLocation();
+  // console.log(location.state);
   //   const [user, setUser] = useLocalStorage("fgo23:user", {
   //     email: "",
   //     password: "",
@@ -17,7 +19,10 @@ function Login() {
   useEffect(() => {
     // IIFE => Immediately Invoked Function Expression
     (function () {
-      if (user.email && user.password) navigate("/todo");
+      if (user.email && user.password) {
+        if (Object.prototype.hasOwnProperty.call(location.state, "from")) return navigate(location.state.from);
+        navigate("/todo");
+      }
     })();
   }, [user]);
 
