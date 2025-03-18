@@ -81,6 +81,7 @@ function AddTodo({ isModalOpen, closeModal, setTodos }) {
             id="title"
             // value={form.title} onChange={inputChangeHandler}
             ref={titleRef}
+            className="autofill:inset-shadow-[0_0_0px_1000px] autofill:inset-shadow-white"
           />
           <label htmlFor="body">Body</label>
           <textarea

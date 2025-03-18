@@ -29,8 +29,10 @@
   #root {
     @apply font-iansui min-h-screen flex flex-col;
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cff);
+  .logo {
+    &:hover {
+      filter: drop-shadow(0 0 2em #646cff);
+    }
   }
 }
 
