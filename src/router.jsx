@@ -5,7 +5,6 @@ import Header from "./components/Header.jsx";
 import Todo from "./pages/Todo";
 import TodoDetail from "./pages/TodoDetail.jsx";
 import Login from "./pages/Login.jsx";
-import useLocalStorage from "./hooks/useLocalStorage";
 
 const person = {
   name: "Iman",
@@ -15,16 +14,11 @@ const person = {
   hobbies: ["Tidur", "Koding", "Nonton"],
 };
 
-function Layout({ user, setUser }) {
+function Layout() {
   return (
     <>
-      <Header user={user} setUser={setUser} />
-      <Outlet
-        context={{
-          user,
-          setUser,
-        }}
-      />
+      <Header />
+      <Outlet />
     </>
   );
 }
@@ -35,13 +29,9 @@ function RouteError() {
 
 function Router() {
   const { name, gender, umur, isMarried, hobbies } = person;
-  const [user, setUser] = useLocalStorage("fgo23:user", {
-    email: "",
-    password: "",
-  });
   return (
     <Routes>
-      <Route element={<Layout user={user} setUser={setUser} />}>
+      <Route element={<Layout />}>
         <Route
           index
           element={

@@ -1,11 +1,13 @@
-import { useNavigate, useOutletContext } from "react-router";
-import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import { useEffect, useContext } from "react";
 
 import InputWithLabel from "../components/InputWithLabel";
+import { userContext } from "../contexts/userContext";
 // import useLocalStorage from "../hooks/useLocalStorage";
 
 function Login() {
-  const { user, setUser } = useOutletContext();
+  const { user, setUser } = useContext(userContext);
+  // console.log(userCtx);
   const navigate = useNavigate();
   //   const [user, setUser] = useLocalStorage("fgo23:user", {
   //     email: "",

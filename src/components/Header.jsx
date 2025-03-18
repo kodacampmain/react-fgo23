@@ -1,8 +1,12 @@
-import { Link, useNavigate } from "react-router";
-// import { useState } from "react";
+import { Link } from "react-router";
+import { useContext } from "react";
 
-function Header({user, setUser}) {
-  const navigate = useNavigate();
+import { userContext } from "../contexts/userContext";
+
+function Header() {
+  const { user, setUser } = useContext(userContext);
+
+  // const navigate = useNavigate();
   // const [user, setUser] = useLocalStorage("fgo23:user", {});
 
   function logout() {
@@ -11,7 +15,7 @@ function Header({user, setUser}) {
       password: "",
     });
     // setIsLogin(false);
-    navigate("/auth");
+    // navigate("/auth");
   }
   return (
     <header className="py-2.5 px-25 flex justify-between sticky top-0 bg-gray-200">

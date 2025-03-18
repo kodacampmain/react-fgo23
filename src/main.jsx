@@ -4,15 +4,15 @@ import { BrowserRouter } from "react-router";
 
 import Router from "./router.jsx";
 import "./styles/tailwind.css";
-
-// import "./index.css";
-// import App from './App.jsx'
+import UserProvider from "./contexts/userContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </UserProvider>
   </StrictMode>
 );
 
