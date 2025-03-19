@@ -9,7 +9,7 @@ function TodoDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const todos = useSelector((state) => state.todo);
+  const todos = useSelector((state) => state.todo.list);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = (cb) => {

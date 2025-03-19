@@ -18,7 +18,7 @@ function Todo() {
   //   return todos;
   // });
   // const [todos, setTodos] = useLocalStorage("fgo23:todos", []);
-  const todos = useSelector((state) => state.todo);
+  const todos = useSelector((state) => state.todo.list);
   function closeModal() {
     setIsModalOpen(false);
   }

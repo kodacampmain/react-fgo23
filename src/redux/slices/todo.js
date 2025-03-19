@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = {
+  list: [],
+};
 
 const todoSlice = createSlice({
   name: "todo",
@@ -13,7 +15,7 @@ const todoSlice = createSlice({
       //     if (!Object.prototype.hasOwnProperty.call(action.payload, key)) error++;
       //   });
       //   if (error) return;
-      state.push(action.payload);
+      state.list.push(action.payload);
     },
     editTodo: (state, { payload }) => {
       // const newTodo = state.map((todo, idx) => {
@@ -23,7 +25,7 @@ const todoSlice = createSlice({
       //   return todo;
       // });
       // return newTodo;
-      state[payload.idx] = payload.data;
+      state.list[payload.idx] = payload.data;
     },
     deleteTodo: (state, { payload }) => {
       // const newTodo = state.filter((_, idx) => {
@@ -31,7 +33,7 @@ const todoSlice = createSlice({
       //   return false;
       // });
       // return newTodo;
-      state.splice(payload.idx, 1);
+      state.list(payload.idx, 1);
     },
   },
   // extraReducers: (builder) => {
