@@ -16,20 +16,30 @@ const todoSlice = createSlice({
       state.push(action.payload);
     },
     editTodo: (state, { payload }) => {
-      const newTodo = state.map((todo, idx) => {
-        if (idx === payload.idx) return payload.data;
-        return todo;
-      });
-      state = newTodo;
+      // const newTodo = state.map((todo, idx) => {
+      //   if (idx === payload.idx) {
+      //     return payload.data;
+      //   }
+      //   return todo;
+      // });
+      // return newTodo;
+      state[payload.idx] = payload.data;
     },
     deleteTodo: (state, { payload }) => {
-      const newTodo = state.filter((_, idx) => {
-        if (idx === payload.idx) return true;
-        return false;
-      });
-      state = newTodo;
+      // const newTodo = state.filter((_, idx) => {
+      //   if (idx === payload.idx) return true;
+      //   return false;
+      // });
+      // return newTodo;
+      state.splice(payload.idx, 1);
     },
   },
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase("todoxxxaddTodoxxx", (state, { payload }) => {})
+  //     .addCase()
+  //     .addCase();
+  // },
 });
 
 // const AddTodoActionCreator = function (payload) {
