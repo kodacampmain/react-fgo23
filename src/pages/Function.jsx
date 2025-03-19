@@ -1,14 +1,19 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
 // import { EventEmitter } from "node:events";
+
+import { userAction } from "../redux/slices/users";
 
 function Home(props) {
   const { name, umur, gender, isMarried, hobbies, komponen: Komponen } = props;
   // const acara = new EventEmitter();
   const [words, setWords] = useState("Kata-Kata Hari Ini");
   const [ismarried, setIsmarried] = useState(isMarried);
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { data, isLoading, isError, isSuccess, error } = useSelector((state) => state.users);
+  // const [users, setUsers] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
   // console.log(name);
   // console.log(umur);
   // console.log(gender);
@@ -43,20 +48,21 @@ function Home(props) {
   useEffect(() => {
     setTimeout(() => {
       // setIsLoading(true);
-      fetch("https://jsonplaceholder.typicode.com/users")
-        .then((response) => {
-          if (!response.ok) throw new Error(response.statusText);
-          return response.json();
-        })
-        .then((data) => {
-          setUsers(data);
-        })
-        .catch((err) => {
-          if (err instanceof Error) console.error(err.message);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+      // fetch("https://jsonplaceholder.typicode.com/users")
+      //   .then((response) => {
+      //     if (!response.ok) throw new Error(response.statusText);
+      //     return response.json();
+      //   })
+      //   .then((data) => {
+      //     setUsers(data);
+      //   })
+      //   .catch((err) => {
+      //     if (err instanceof Error) console.error(err.message);
+      //   })
+      //   .finally(() => {
+      //     setIsLoading(false);
+      //   });
+      dispatch(userAction.getUsersThunk());
     }, 1000);
   }, []);
   useEffect(() => {
@@ -73,12 +79,13 @@ function Home(props) {
     }
   }
   function showLists(showListElement) {
-    if (isLoading) return null;
-    return <ol>{showListElement()}</ol>;
+    if (isSuccess) return <ol>{showListElement()}</ol>;
+    if (isError) return <p>{error}</p>;
+    return null;
   }
   function showUsers() {
-    if (users.length === 0) return null;
-    return users.map((user) => {
+    if (data.length === 0) return null;
+    return data.map((user) => {
       return <li key={user.id}>{user.name}</li>;
     });
   }
