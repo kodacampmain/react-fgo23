@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-import useLocalStorage from "../hooks/useLocalStorage.js";
+// import useLocalStorage from "../hooks/useLocalStorage.js";
 
 import AddTodo from "../components/AddTodo.jsx";
 import TodoList from "../components/TodoList.jsx";
@@ -16,7 +17,8 @@ function Todo() {
   //   const todos = JSON.parse(localStorage["fgo23:todos"]);
   //   return todos;
   // });
-  const [todos, setTodos] = useLocalStorage("fgo23:todos", []);
+  // const [todos, setTodos] = useLocalStorage("fgo23:todos", []);
+  const todos = useSelector((state) => state.todo);
   function closeModal() {
     setIsModalOpen(false);
   }
@@ -36,7 +38,7 @@ function Todo() {
         </button>
       </header>
       <TodoList todos={todos} />
-      <AddTodo isModalOpen={isModalOpen} closeModal={closeModal} setTodos={setTodos} />
+      <AddTodo isModalOpen={isModalOpen} closeModal={closeModal} />
     </>
   );
 }

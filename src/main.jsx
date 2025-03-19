@@ -5,14 +5,17 @@ import { BrowserRouter } from "react-router";
 import Router from "./router.jsx";
 import "./styles/tailwind.css";
 import UserProvider from "./contexts/userContext.jsx";
+import ReduxProvider from "./redux/ReduxProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <UserProvider>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
-    </UserProvider>
+    <ReduxProvider>
+      <UserProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </UserProvider>
+    </ReduxProvider>
   </StrictMode>
 );
 

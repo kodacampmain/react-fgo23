@@ -1,9 +1,12 @@
 import { useContext } from "react";
+import { useDispatch } from "react-redux";
 
 import { userContext } from "../contexts/userContext";
+import { addTodo } from "../redux/slices/todo";
 
-function AddTodo({ isModalOpen, closeModal, setTodos }) {
+function AddTodo({ isModalOpen, closeModal }) {
   const { user } = useContext(userContext);
+  const dispatch = useDispatch();
   // const [form, setForm] = useState({
   //   title: "",
   //   body: "",
@@ -20,16 +23,25 @@ function AddTodo({ isModalOpen, closeModal, setTodos }) {
     e.preventDefault();
     const title = e.target.title.value;
     const body = e.target.body.value;
-    setTodos((todos) => {
-      const newTodos = [...todos];
-      newTodos.push({
+
+    // setTodos((todos) => {
+    //   const newTodos = [...todos];
+    //   newTodos.push({
+    //     title,
+    //     body,
+    //   });
+    //   // localStorage.setItem("fgo23:todos", JSON.stringify(newTodos));
+    //   // localStorage["fgo23:todos"] = JSON.stringify(newTodos);
+    //   return newTodos;
+    // });
+
+    dispatch(
+      addTodo({
         title,
         body,
-      });
-      // localStorage.setItem("fgo23:todos", JSON.stringify(newTodos));
-      // localStorage["fgo23:todos"] = JSON.stringify(newTodos);
-      return newTodos;
-    });
+      })
+    );
+
     e.target.title.value = "";
     e.target.body.value = "";
     closeModal();
