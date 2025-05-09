@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Link } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 // import { EventEmitter } from "node:events";
@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userAction } from "../redux/slices/users";
 
 function Home(props) {
+  const TodayWords = lazy(() => import("../components/TodayWords"));
   const { name, umur, gender, isMarried, hobbies, komponen: Komponen } = props;
   // const acara = new EventEmitter();
   const [words, setWords] = useState("Kata-Kata Hari Ini");
@@ -42,6 +43,15 @@ function Home(props) {
     console.log("effect");
     // effect/logika yang akan dijalankan
     // return dari fungsi akan berjalan sebagai will unmount
+    const url = "http://localhost:8080/ping";
+    const headers = new Headers();
+    headers.append("my-headers", "header");
+    fetch(url, {
+      headers,
+    })
+      .then((response) => response.json())
+      .then((result) => console.log(result))
+      .catch((err) => console.error(err));
   }, [words]);
   // jika deps = [], maka seperti did mount
   // jika deps ada elemennya, maka seperti did update
@@ -116,15 +126,9 @@ function Home(props) {
           })}
         </ul>
       </section>
-      <section className="bg-gray-300 py-2.5 px-5 flex flex-col items-center">
-        <form onSubmit={submitHandler}>
-          <input type="text" name="words" placeholder="Kata-kata hari ini" className="p-0.5 border-2 border-black" />
-          <button type="submit" className="p-0.5 ml-1">
-            Change
-          </button>
-        </form>
-        <h3>{words}</h3>
-      </section>
+      <Suspense fallback={<Loading />}>
+        <TodayWords submitHandler={submitHandler} words={words} />
+      </Suspense>
       <section>
         {showLoadingElement()}
         {showLists(showUsers)}
@@ -135,6 +139,14 @@ function Home(props) {
         </Link>
       </section>
     </>
+  );
+}
+
+function Loading() {
+  return (
+    <section className="bg-gray-300 py-3.5 px-6 flex flex-col items-center h-[75px]">
+      <p className="font-bold text-3xl text-white italic">Loading...</p>
+    </section>
   );
 }
 
