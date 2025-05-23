@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 // import { EventEmitter } from "node:events";
+import constant from "../configs/constant";
 
 import { userAction } from "../redux/slices/users";
 
@@ -66,6 +67,15 @@ function Home(props) {
     }, 1000);
   }, []);
   useEffect(() => {
+    fetch(`${constant.host}/ping`)
+      .then((response) => {
+        if (!response.ok) {
+          throw response.statusText;
+        }
+        return response.json();
+      })
+      .then((result) => console.log(result))
+      .catch((err) => console.error(err));
     document.title = "Home";
   }, []);
   function showLoadingElement() {
